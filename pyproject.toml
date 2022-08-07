@@ -16,6 +16,9 @@ eclipse-calendar = "eclipse_calendar.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+requests = "^2.28.1"
+types-requests = "^2.28.8"
+icalendar = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
@@ -37,6 +40,12 @@ testpaths = [
 
 [tool.mypy]
 files = ["src", "tests"]
+
+[[tool.mypy.overrides]]
+module = [
+  "icalendar",
+]
+ignore_missing_imports = true
 
 [tool.black]
 # extend_exclude = '''
@@ -68,6 +77,9 @@ score="no"
 [tool.pylint.REPORTS]
 output-format="colorized"
 score="no"
+
+[tool.pylint.MASTER]
+extension-pkg-whitelist="pydantic"
 
 # See links below on exluding directories from pyright (and thus pylance)
 # https://github.com/microsoft/pylance-release/issues/642#issuecomment-732175189
